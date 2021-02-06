@@ -16,7 +16,7 @@ setWeatherData({
     date: new Date (response.data.dt * 1000),
     description: response.data.weather[0].description,
     temperature: response.data.main.temp,
-    icon: "http://openweathermap.org/img/wn/02d@2x.png",
+    icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     humidity: response.data.main.humidity,
     wind: response.data.wind.speed
   }
