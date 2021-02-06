@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import FormattedDate from "./FormattedDate";
+
+import WeatherInfo from "./WeatherInfo";
 import axios from 'axios';
 
 import "./styles.css";
@@ -44,47 +45,11 @@ if(weatherData.ready) {
         <button className="btn btn-dark">Current City</button>
       </form>
 
-      <hr />
+       <hr />
 
-      <h2> {weatherData.city} </h2>
+      <WeatherInfo data={weatherData}/>
 
-      <h3> <FormattedDate date={weatherData.date} /> </h3>
-
-      <div className="CurrentTemp">
-        <span className="text-capitalize"> {weatherData.description} </span>
-        <br />
-        <br />
-        <strong> {weatherData.temperature} </strong>
-        <span className="units">
-          <a href="/" className="active">
-            °C |
-          </a>
-          <a href="/" className="fahrenheit">
-            °F
-          </a>
-        </span>
-      </div>
-
-      <img className="CurrentWeatherIcon" src={weatherData.icon} alt="WeatherIcon" />
-
-      <ul>
-        <li>Wind: {weatherData.wind} m/s</li>
-        <li>Humidity: {weatherData.humidity} %</li>
-      </ul>
-
-      <hr />
-
-      <div className="row">
-        <div className="col">
-          <p>Sunrise: 6:20</p>
-          <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="" />
-        </div>
-
-        <div className="col">
-          <p>Sunset: 19:40</p>
-          <img src="http://openweathermap.org/img/wn/01n@2x.png" alt="" />
-        </div>
-      </div>
+      
     </div>
   );
 
