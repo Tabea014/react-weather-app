@@ -1,19 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
+import FormattedDate from "./FormattedDate";
 import axios from 'axios';
 
 import "./styles.css";
 
-export default function Weather() {
-  let weatherData = {
-    city: "Stockholm",
-    date: "Sunday 10:00",
-    description: "Sunny",
-    temperature: 22,
-    imgURL: "http://openweathermap.org/img/wn/02d@2x.png",
-    humidity: 20,
-    wind: 5
-  };
+export default function Weather(props) {
+  const[weatherData, setWeatherData] = useState({ready: false});
+function displayWeather(response){
 
+setWeatherData({
+  ready: true,
+  city: response.data.name,
+    date: new Date (response.data.dt * 1000),
+    description: response.data.weather[0].description,
+    temperature: response.data.main.temp,
+    icon: "http://openweathermap.org/img/wn/02d@2x.png",
+    humidity: response.data.main.humidity,
+    wind: response.data.wind.speed
+  }
+)
+
+}
+
+if(weatherData.ready) {
   return (
     <div className="container">
       <h1> Weather App</h1>
@@ -39,10 +48,10 @@ export default function Weather() {
 
       <h2> {weatherData.city} </h2>
 
-      <h3> {weatherData.date} </h3>
+      <h3> <FormattedDate date={weatherData.date} /> </h3>
 
       <div className="CurrentTemp">
-        <span> {weatherData.description} </span>
+        <span className="text-capitalize"> {weatherData.description} </span>
         <br />
         <br />
         <strong> {weatherData.temperature} </strong>
@@ -56,7 +65,7 @@ export default function Weather() {
         </span>
       </div>
 
-      <img className="CurrentWeatherIcon" src={weatherData.imgURL} alt="" />
+      <img className="CurrentWeatherIcon" src={weatherData.icon} alt="WeatherIcon" />
 
       <ul>
         <li>Wind: {weatherData.wind} m/s</li>
@@ -78,4 +87,14 @@ export default function Weather() {
       </div>
     </div>
   );
+
+} else {
+
+  const apiKey = "8d8df584539a5c7da3c6867ed8668765";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(displayWeather);
+
+return "Loading the weather...🌴"
+}
+  
 }
