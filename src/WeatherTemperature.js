@@ -36,7 +36,7 @@ if (unit === `celsius`) {
 
     return (
        <div className="WeatherTemperature">
-    <strong> {Math.round(fahrenheit())} </strong>
+    <span> {Math.round(fahrenheit())} </span>
         <span className="units">
           <a href="/" className="celsius" onClick={showCelsius}>
             °C |
