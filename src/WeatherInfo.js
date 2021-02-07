@@ -39,6 +39,7 @@ export default function WeatherInfo(props){
           <p>Sunset: 19:40</p>
           <img src="http://openweathermap.org/img/wn/01n@2x.png" alt="" />
         </div>
+    
       </div>
       </div>
     );
