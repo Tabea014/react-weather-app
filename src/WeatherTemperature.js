@@ -21,7 +21,7 @@ if (unit === `celsius`) {
 
    return (
        <div className="WeatherTemperature">
-    <strong> {Math.round(props.celsius)} </strong>
+    <span> {Math.round(props.celsius)} </span>
         <span className="units">
           <a href="/" className="celsius">
             °C |
