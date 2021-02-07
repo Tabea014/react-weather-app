@@ -115,17 +115,21 @@ ul {
   text-decoration: none;
 }
 
-.active {
+.celsius {
   color: black;
   cursor: default;
   text-align: center;
   text-decoration: none;
 }
 
-.active:hover {
+.celsius:hover {
   text-decoration: none;
 }
 
 .fahrenheit {
+  text-decoration: none;
+}
+
+.fahrenheit:hover {
   text-decoration: none;
 }
